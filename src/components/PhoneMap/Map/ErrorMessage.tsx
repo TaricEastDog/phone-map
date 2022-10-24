@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography"
 
-const ErrorMessage = ({ error }: any): JSX.Element => {
+const ErrorMessage = ({ error }: any) => {
   console.log("error error", error.message)
   return (
     <Typography sx={{ color: "red" }} variant="h3">

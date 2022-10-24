@@ -36,28 +36,27 @@ const PhoneModal = ({ open, phoneData, onClose }: ModalProps) => {
           sx={{ display: "flex", flexDirection: "column", gap: "4px" }}
         >
           <Typography mt={0} variant="h5" component="h2">
-            Tracking: PhoneID - {phoneData?.id.padStart(3, "0")}
+            {`Tracking: PhoneID - ${phoneData?.id.padStart(3, "0")}`}
           </Typography>
           <Divider />
-          <Typography>IMEI: {phoneData?.imei}</Typography>
+          <Typography>{`IMEI: ${phoneData?.imei}`}</Typography>
           <Divider />
-          <Typography>SIM number: {phoneData?.sim_number}</Typography>
+          <Typography>{`SIM number: ${phoneData?.sim_number}`}</Typography>
           <Divider />
-          <Typography>Last Status: {phoneData?.last_status}</Typography>
+          <Typography>{`Last Status: ${phoneData?.last_status}`}</Typography>
           <Divider />
-          <Typography>Last Speed: {phoneData?.last_speed}km/h</Typography>
-          <Divider />
-          <Typography>
-            Last Coordinates:{" "}
-            {`${phoneData?.last_latitude}, ${phoneData?.last_longitude}`}
-          </Typography>
+          <Typography>{`Last Speed: ${phoneData?.last_speed}km/h`}</Typography>
           <Divider />
           <Typography>
-            Last Heartbeat: {heartbeatDate?.toLocaleString("en-US")}
+            {`Last Coordinates: ${phoneData?.last_latitude}, ${phoneData?.last_longitude}`}
           </Typography>
           <Divider />
           <Typography>
-            Last Track Time: {trackDate?.toLocaleString("en-US")}
+            {`Last Heartbeat: ${heartbeatDate?.toLocaleString("en-US")}`}
+          </Typography>
+          <Divider />
+          <Typography>
+            {`Last Track Time: ${trackDate?.toLocaleString("en-US")}`}
           </Typography>
           <Divider />
         </Container>

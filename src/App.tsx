@@ -2,7 +2,7 @@ import Container from "@mui/material/Container"
 import NavBar from "./components/NavBar"
 import MapLoader from "./components/PhoneMap"
 
-const App = (): JSX.Element => {
+const App = () => {
   return (
     <Container
       maxWidth="xl"
@@ -10,7 +10,7 @@ const App = (): JSX.Element => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: "1rem"
+        gap: "8px"
       }}
     >
       <NavBar />

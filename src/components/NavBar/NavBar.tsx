@@ -1,7 +1,7 @@
 import Container from "@mui/material/Container"
 import Typography from "@mui/material/Typography"
 
-const NavBar = (): JSX.Element => {
+const NavBar = () => {
   return (
     <Container
       sx={{
@@ -10,7 +10,7 @@ const NavBar = (): JSX.Element => {
         alignItems: "center",
         justifyContent: "center",
         m: 0,
-        padding: "10px",
+        padding: "5px",
         width: "100%"
       }}
     >

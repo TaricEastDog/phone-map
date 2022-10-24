@@ -1,7 +1,7 @@
 import { useJsApiLoader } from "@react-google-maps/api"
 import PhoneMap from "./Map/PhoneMap"
 
-const MapLoader = (): JSX.Element => {
+const MapLoader = () => {
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string
   })

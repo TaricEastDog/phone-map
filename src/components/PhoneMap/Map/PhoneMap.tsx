@@ -20,7 +20,7 @@ export interface PhoneFilters {
   maxSpeed: number
 }
 
-const PhoneMap = (): JSX.Element => {
+const PhoneMap = () => {
   const [selectedPhoneData, setSelectedPhoneData] = useState<resData>()
   const [showModal, setShowModal] = useState(false)
   const [filters, setFilters] = useState<PhoneFilters>({
@@ -68,7 +68,7 @@ const PhoneMap = (): JSX.Element => {
         m: 0,
         p: 0,
         width: "100%",
-        gap: "16px"
+        gap: "8px"
       }}
     >
       <PhoneModal

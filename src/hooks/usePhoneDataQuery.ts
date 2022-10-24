@@ -18,28 +18,14 @@ export interface resData {
   sim_number: string
 }
 
-const PhoneDataQuery = async (filters: PhoneFilters) => {
+const PhoneDataQuery = async () => {
   const { data } = await mockiPhoneData.get(``, {})
 
-  let filteredData: any = data.data
-
-  // if (!filters.status) {
-  //   filteredData = data.data.filter(
-  //     (phone: any) => phone.last_status === "No Alarm"
-  //   )
-  // }
-
-  // filteredData = filteredData.filter(
-  //   (phone: any) =>
-  //     phone.last_speed >= filters.minSpeed &&
-  //     phone.last_speed <= filters.maxSpeed
-  // )
-
-  return filteredData
+  return data.data
 }
 
 export const usePhoneDataQuery = (filters: PhoneFilters) => {
-  return useQuery<resData[]>([queryName], () => PhoneDataQuery(filters), {
+  return useQuery<resData[]>([queryName], () => PhoneDataQuery(), {
     select: (data) =>
       data.filter((phone) =>
         !filters.status
