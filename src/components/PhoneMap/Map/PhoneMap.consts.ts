@@ -14,19 +14,11 @@ export const sliderMarks = [
     label: "0km/h"
   },
   {
-    value: 10,
-    label: "10km/h"
+    value: 15,
+    label: "15km/h"
   },
   {
-    value: 20,
-    label: "20km/h"
-  },
-  {
-    value: 40,
-    label: "40km/h"
-  },
-  {
-    value: 60,
-    label: "60km/h"
+    value: 50,
+    label: "50km/h"
   }
 ]

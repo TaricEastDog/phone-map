@@ -120,7 +120,7 @@ const PhoneMap = () => {
                     lat: parseFloat(phone.last_latitude),
                     lng: parseFloat(phone.last_longitude)
                   }}
-                  title="adasdaasd"
+                  title={phone.last_status}
                   icon={
                     phone.last_status === "No Alarm"
                       ? { url: blueMarker }
