@@ -1,5 +1,22 @@
+import Container from "@mui/material/Container"
+import NavBar from "./components/NavBar"
+import MapLoader from "./components/PhoneMap"
+
 const App = (): JSX.Element => {
-  return <div>App</div>
+  return (
+    <Container
+      maxWidth="xl"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "1rem"
+      }}
+    >
+      <NavBar />
+      <MapLoader />
+    </Container>
+  )
 }
 
 export default App

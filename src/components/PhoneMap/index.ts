@@ -1,1 +1,1 @@
-export { default } from "./PhoneMap"
+export { default } from "./MapLoader"
