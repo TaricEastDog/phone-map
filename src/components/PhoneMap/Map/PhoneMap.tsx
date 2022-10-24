@@ -4,11 +4,13 @@ import Container from "@mui/material/Container"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Checkbox from "@mui/material/Checkbox"
 import Slider from "@mui/material/Slider"
+import Typography from "@mui/material/Typography"
 import { GoogleMap, Marker, MarkerClusterer } from "@react-google-maps/api"
 
-import { usePhoneDataQuery } from "../../../hooks/usePhoneDataQuery"
-import { center, containerStyle } from "./PhoneMap.consts"
+import { resData, usePhoneDataQuery } from "../../../hooks/usePhoneDataQuery"
+import { center, containerStyle, sliderMarks } from "./PhoneMap.consts"
 import ErrorMessage from "./ErrorMessage"
+import PhoneModal from "../../PhoneModal"
 import blueMarker from "../../../utils/blue-marker.png"
 import redMarker from "../../../utils/red-marker.png"
 
@@ -19,12 +21,14 @@ export interface PhoneFilters {
 }
 
 const PhoneMap = (): JSX.Element => {
+  const [selectedPhoneData, setSelectedPhoneData] = useState<resData>()
+  const [showModal, setShowModal] = useState(false)
   const [filters, setFilters] = useState<PhoneFilters>({
     status: true,
     minSpeed: 0,
-    maxSpeed: 100
+    maxSpeed: 50
   })
-  const [speedValue, setSpeedValue] = useState<number[]>([0, 100])
+  const [speedValue, setSpeedValue] = useState<number[]>([0, 50])
   const { data, error, isError, isLoading } = usePhoneDataQuery(filters)
 
   if (isError) {
@@ -34,8 +38,6 @@ const PhoneMap = (): JSX.Element => {
   if (isLoading) {
     return <CircularProgress />
   }
-
-  console.log(data)
 
   const handleShowOfflineChange = () => {
     setFilters((filters) => ({ ...filters, status: !filters.status }))
@@ -52,6 +54,11 @@ const PhoneMap = (): JSX.Element => {
     }))
   }
 
+  const handleMarkerClicked = (phone: resData) => {
+    setSelectedPhoneData(phone)
+    setShowModal(true)
+  }
+
   return (
     <Container
       fixed
@@ -60,11 +67,28 @@ const PhoneMap = (): JSX.Element => {
         flexDirection: "column",
         m: 0,
         p: 0,
-        width: "100%"
+        width: "100%",
+        gap: "16px"
       }}
     >
-      <div>
+      <PhoneModal
+        open={showModal}
+        onClose={() => setShowModal(!showModal)}
+        phoneData={selectedPhoneData}
+      />
+      <Typography variant="h5">Filters:</Typography>
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          gap: "36px",
+          m: 0,
+          p: 0
+        }}
+      >
         <FormControlLabel
+          sx={{ whiteSpace: "nowrap" }}
           control={
             <Checkbox
               defaultChecked
@@ -73,13 +97,17 @@ const PhoneMap = (): JSX.Element => {
           }
           label="Offline Devices"
         />
-      </div>
-      <Slider
-        value={speedValue}
-        onChange={handleSpeedChange}
-        valueLabelDisplay="auto"
-        disableSwap
-      />
+
+        <Slider
+          value={speedValue}
+          onChange={handleSpeedChange}
+          valueLabelDisplay="auto"
+          marks={sliderMarks}
+          disableSwap
+          max={60}
+        />
+      </Container>
+
       <GoogleMap zoom={7} center={center} mapContainerStyle={containerStyle}>
         <MarkerClusterer minimumClusterSize={2} averageCenter>
           {(clusterer) => (
@@ -98,6 +126,7 @@ const PhoneMap = (): JSX.Element => {
                       ? { url: blueMarker }
                       : { url: redMarker }
                   }
+                  onClick={() => handleMarkerClicked(phone)}
                 />
               ))}
             </>

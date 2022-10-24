@@ -5,7 +5,7 @@ import { PhoneFilters } from "../components/PhoneMap/Map/PhoneMap"
 
 const queryName = "phoneData"
 
-interface resData {
+export interface resData {
   id: string
   imei: string
   last_altitude: string
